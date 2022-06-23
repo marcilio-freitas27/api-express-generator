@@ -40,7 +40,7 @@ const id = req.params.id;
     conn.connect().then((pool) => {
         const queryStr = `DELETE FROM produtos WHERE id = ${id}`
         pool.query(queryStr).then((rows) => {
-        res.send(204).status();
+          res.send(204).status();
     })
   })
 })
