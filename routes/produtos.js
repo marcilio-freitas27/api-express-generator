@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 const id = req.params.id;
     conn.connect().then((pool) => {
-        const queryStr = `SELECT * FROM produtos WHERE Codigo = ${id}`
+        const queryStr = `SELECT * FROM produtos WHERE id = ${id}`
         // const queryStr = 'SELECT * FROM produto'
         pool.query(queryStr).then((rows) => {
         if(rows.recordset.length > 0){
@@ -32,7 +32,17 @@ const id = req.params.id;
             res.send(404).status(rows.recordset);
         }
     })
+  })
 })
+
+router.delete('/:id', (req, res) => {
+const id = req.params.id;
+    conn.connect().then((pool) => {
+        const queryStr = `DELETE FROM produtos WHERE id = ${id}`
+        pool.query(queryStr).then((rows) => {
+        res.send(204).status();
+    })
+  })
 })
 
 module.exports = router;

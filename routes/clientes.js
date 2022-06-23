@@ -35,4 +35,15 @@ const id = req.params.id;
 })
 })
 
+router.delete('/:id', (req, res) => {
+const id = req.params.id;
+    conn.connect().then((pool) => {
+        const queryStr = `DELETE FROM Clientes WHERE Codigo = ${id}`
+        pool.query(queryStr).then((rows) => {
+        res.send(204).status();
+    })
+  })
+})
+
+
 module.exports = router;
